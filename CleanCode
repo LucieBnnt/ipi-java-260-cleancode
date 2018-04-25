@@ -1,0 +1,91 @@
+-------------NOMS NON REVELATEURS---------------
+NOT OK :
+	String toto;
+	public void ctpdug(){
+	}
+
+OK :
+	String nomClient;
+	public void setClient(){
+	}
+
+
+---------DUPLICATION DE CODE----------------
+NOT OK :
+
+	if(conditionA){
+		doSomething();
+		
+	} else if (conditionB){
+		doSomething();
+		
+	} else if (conditionC){
+		doSomething();
+	}
+
+
+OK :
+	if(conditionA || conditionB || conditionC){
+			doSomething();
+	}
+
+
+-----------PASSER CAS NULL----------------------
+NOT OK :
+	if(var == null){
+		var = 0;
+	}
+	
+	doSomething(var);
+
+OK :
+	try {
+		doSomething();
+	} catch (NullPointerException e){
+		log.error("Var is null");
+	}
+	
+	
+------MISE EN FORME--------
+NOT OK :
+if ((condition1 && condition2) || (condition3 && condition4) || (condition5 && condition6)) {
+    doSomething();
+}
+
+OK :
+if ((condition1 && condition2)
+        || (condition3 && condition4)
+        || (condition5 && condition6)) {
+    doSomething();
+}
+
+-------MAUVAIS COMMENTAIRES------------
+NOT OK :
+	//Initialisation de la variable nom
+	int i = 0;
+	
+	// Appel de la fonction de division
+	addition(i);
+	
+	// Fonction d'addition
+	public int addition(int i){
+		//on ajoute 1 à i
+		i = i+1;
+		return i;
+	}
+	
+
+OK :
+	int i = 0;
+	addition(i);
+	
+	/**
+     * Méthode pour additionner
+     * @param i
+     * @return i
+     */
+	public int addition(int i){
+		i = i+1;
+		return i;
+	}
+
